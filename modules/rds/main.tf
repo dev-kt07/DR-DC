@@ -1,5 +1,9 @@
+
+
+
+
 resource "aws_db_subnet_group" "this" {
-  name       = "${replace(lower(var.name), "[^a-z0-9-]", "")}-subnet-group"
+  name       = "db-subnet-group"
   subnet_ids = var.db_subnet_ids
 
   tags = {
@@ -8,7 +12,7 @@ resource "aws_db_subnet_group" "this" {
 }
 
 resource "aws_rds_cluster" "this" {
-  cluster_identifier     = replace(lower(var.name), "[^a-z0-9-]", "")
+  cluster_identifier     = "database-1"
   snapshot_identifier    = var.snapshot_identifier
   engine                 = "aurora-mysql"
   db_subnet_group_name   = aws_db_subnet_group.this.name
@@ -17,10 +21,11 @@ resource "aws_rds_cluster" "this" {
 }
 
 resource "aws_rds_cluster_instance" "this" {
-  identifier              = "${replace(lower(var.name), "[^a-z0-9-]", "")}-instance"
+  identifier              = "database-1"
   cluster_identifier      = aws_rds_cluster.this.id
   instance_class          = var.db_instance_class
   engine                  = "aurora-mysql"
   db_subnet_group_name    = aws_db_subnet_group.this.name
-  publicly_accessible     = false
+  publicly_accessible     = true
 }
+
