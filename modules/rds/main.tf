@@ -10,11 +10,11 @@ resource "aws_db_instance" "this" {
 }
 
 resource "aws_db_subnet_group" "this" {
-  name       = "${var.name}-subnet-group"
+  name       = "db-subnet-group"
   subnet_ids = var.db_subnet_ids
 
   tags = {
-    Name = "${var.name}-subnet-group"
+    Name = "my-rds-subnet-group"
   }
 }
 
