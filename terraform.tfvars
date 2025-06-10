@@ -12,4 +12,4 @@ rds_security_group_ids   = ["sg-0064cdd2e7d634c92"]
 
 db_name                  = "flaskdb"
 db_username              = "admin"
-db_password              = "admin1234"
+db_password              = "krishna123456"
