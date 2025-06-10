@@ -6,7 +6,7 @@ module "ec2" {
   key_name           = var.key_name
   security_group_ids = var.security_group_ids
   subnet_id          = var.ec2_subnet_id
-  name               = "MY_FLASK_APP"
+  name               = "flask-app"
 }
 
 module "rds" {
@@ -19,5 +19,5 @@ module "rds" {
   db_name              = var.db_name
   username             = var.db_username
   password             = var.db_password
-  name                 = "My_RDS_DATABASE"
+  name                 = "my-rds-database"
 }
