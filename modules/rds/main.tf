@@ -1,0 +1,23 @@
+resource "aws_db_instance" "this" {
+  identifier              = var.name
+  snapshot_identifier     = var.snapshot_identifier
+  instance_class          = var.db_instance_class
+  db_subnet_group_name    = aws_db_subnet_group.this.name
+  vpc_security_group_ids  = var.vpc_security_group_ids
+  publicly_accessible     = true
+  skip_final_snapshot     = true
+  apply_immediately       = true
+}
+
+resource "aws_db_subnet_group" "this" {
+  name       = "${var.name}-subnet-group"
+  subnet_ids = var.db_subnet_ids
+
+  tags = {
+    Name = "${var.name}-subnet-group"
+  }
+}
+
+output "rds_endpoint" {
+  value = aws_db_instance.this.endpoint
+}
