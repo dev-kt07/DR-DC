@@ -1,5 +1,5 @@
 resource "aws_db_instance" "this" {
-  identifier              = var.name
+  identifier              = "MY_RDS_DATABASE"
   snapshot_identifier     = var.snapshot_identifier
   instance_class          = var.db_instance_class
   db_subnet_group_name    = aws_db_subnet_group.this.name
